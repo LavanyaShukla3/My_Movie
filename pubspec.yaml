@@ -21,6 +21,10 @@ dependencies:
   google_sign_in: ^6.1.5
   firebase_core: ^2.15.1
   firebase_auth: ^4.9.0
+  firebase_ui_firestore: ^1.5.11
+  firebase_storage: ^11.2.7
+ 
+
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +43,9 @@ flutter:
     - images/gmail.png
     - images/google.png
     - images/movie.jpeg
+    - images/movie.jpeg
+    - images/TmdbLogo.png
+    - images/popcorn.png
 
   #fonts:
   #  - family: Nunito

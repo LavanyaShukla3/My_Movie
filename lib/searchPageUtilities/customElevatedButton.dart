@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/Movie_db/searchPage.dart';
+import 'package:my_movie/moviedb/searchPage.dart';
 
 //custom button - container of fixed size that detect gestures.
 //gesture detector is placed on the enrire container.

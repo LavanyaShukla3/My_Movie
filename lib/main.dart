@@ -3,12 +3,18 @@ import 'package:my_movie/intro/intro1.dart';
 import 'package:my_movie/intro/intro2.dart';
 import 'package:my_movie/intro/intro3.dart';
 import 'package:my_movie/Registeration_Page/register_main.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 const yellow =0xFFD19537;
 const blue=0xFF1F2F34;
 
-void main() {
-  runApp(const MyApp());
+void main()async {
+
+    // Ensure that Flutter is initialized
+    WidgetsFlutterBinding.ensureInitialized();
+    // Initialize Firebase
+    await Firebase.initializeApp();
+    runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

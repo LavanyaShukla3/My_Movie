@@ -37,24 +37,26 @@ class _BackgroundAnimationState extends State<BackgroundAnimation>
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
+
+        //making the animation opaque
         return Stack(
-          children: [
-            Positioned.fill(
-              left: _animation.value * MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'images/movie.jpeg',
-                fit: BoxFit.cover,
-              ),
-            ),
-            Positioned.fill(
-              left: (_animation.value - 1.0) * MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'images/movie.jpeg',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ],
-        );
+              children: [
+                Positioned.fill(
+                  left: _animation.value * MediaQuery.of(context).size.width,
+                  child: Image.asset(
+                    'images/movie.jpeg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned.fill(
+                  left: (_animation.value - 1.0) * MediaQuery.of(context).size.width,
+                  child: Image.asset(
+                    'images/movie.jpeg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+       );
       },
     );
   }

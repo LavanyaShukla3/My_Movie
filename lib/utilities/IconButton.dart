@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/Movie_db/ListPage.dart';
-import 'package:my_movie/Movie_db/NavigationPage.dart';
-import 'package:my_movie/Movie_db/searchPage.dart';
-import 'package:my_movie/Movie_db/UserInfoPage.dart';
-import 'package:my_movie/Movie_db/movie_homepage.dart';
+import 'package:my_movie/moviedb/listPage.dart';
+import 'package:my_movie/moviedb/navigationPage.dart';
+import 'package:my_movie/moviedb/searchPage.dart';
+import 'package:my_movie/moviedb/userInfoPage.dart';
+import 'package:my_movie/moviedb/moviehomepage.dart';
 
 class IconButtons extends StatefulWidget {
   IconButtons({required this.page, required this.icon});

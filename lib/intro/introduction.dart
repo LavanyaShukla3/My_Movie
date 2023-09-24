@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/MyArc.dart';
+import 'package:my_movie/myArc.dart';
 
 class introduction extends StatelessWidget {
 
