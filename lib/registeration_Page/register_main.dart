@@ -4,6 +4,7 @@ import 'package:my_movie/moviedb/moviehomepage.dart';
 import 'package:my_movie/authentication/googleauth_service.dart';
 import 'package:my_movie/authentication/gmailLogin.dart';
 import 'package:my_movie/authentication/register.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class register_main extends StatelessWidget {
@@ -128,31 +129,42 @@ class register_main extends StatelessWidget {
           //movie icon
           Center(
             child: Container(
-                margin: EdgeInsets.only(top: 60.0),
-                child: const Column(children: <Widget>[
-                  Image(
+              margin: EdgeInsets.only(top: 100.0, left: 25.0, right: 25.0),
+              child: Column(
+                children: <Widget>[
+                  const Image(
                     image: AssetImage('images/popcorn.png'),
-                    width: 100.0,
-                    height: 100.0,
+                    width: 60.0,
+                    height: 60.0,
                   ),
+                  SizedBox(height: 20.0,),
                   Text(
                     'MY MOVIE LIST',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
+                    style: GoogleFonts.ptSansNarrow(
+                      fontWeight: FontWeight.w700,
                       color: Colors.white,
                       fontSize: 30.0,
                     ),
                   ),
-                  Text(
-                    'One stop destination for everything movies',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                      fontSize: 18.0,
+                  Center(
+                    child: Text(
+                      'One stop destination for everything movies',
+                      style: GoogleFonts.nunito(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      ),
+                      textAlign: TextAlign.center, // Center-align the text
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
                     ),
                   ),
-                ])),
+                ],
+              ),
+            ),
           ),
+
 
           //SKIP
 
@@ -171,14 +183,14 @@ class register_main extends StatelessWidget {
               ),
               child: Container(
                 //margin: EdgeInsets.only(right: 30.0, top: 30.0),
-                padding: const EdgeInsets.only(top: 30.0, right: 30.0),
+                padding: const EdgeInsets.only(top: 40.0, right: 0.0),
                 color: Colors.transparent,
-                child: const Text(
+                child: Text(
                   'SKIP',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,
+                  style: GoogleFonts.nunito(
+                    fontWeight: FontWeight.w400,
                     color: Colors.white,
+                    fontSize: 15.0,
                   ),
                 ),
               ),

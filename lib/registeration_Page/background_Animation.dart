@@ -7,20 +7,27 @@ class BackgroundAnimation extends StatefulWidget {
 
 class _BackgroundAnimationState extends State<BackgroundAnimation>
     with SingleTickerProviderStateMixin {
+  //controller - manages the animation - duration
   late AnimationController _controller;
+  //Animation-control the curves
   late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
+      //this represents current context
       vsync: this,
       duration: Duration(seconds: 10),
     )..repeat();
+
+    //tween- creating an intermediate state between the two endpoints
+    //used with AnimationController, which helps play the animations forward or backward.
     _animation = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(CurvedAnimation(
+      //parent- on what the curve is applied to
       parent: _controller,
       curve: Curves.linear,
     ));

@@ -6,6 +6,7 @@ import 'package:my_movie/utilities/buildMovieList.dart';
 import 'package:my_movie/utilities/appbar.dart';
 import 'package:my_movie/utilities/IconButton.dart';
 import 'package:my_movie/utilities/nowPlayingSlider.dart';
+import 'package:my_movie/utilities/popularPeople.dart';
 
 //movie homepage where list of movie present
 // has options to search/navigate and create watchlist
@@ -84,23 +85,52 @@ class _movie_HomepageState extends State<movie_Homepage> {
             //now playing movie slider
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 4,
+              height: MediaQuery.of(context).size.height / 3,
               child: NowPlayingMovies(),
             ),
-            // Popular Movies
-            buildMovieList(
-                title: "Popular Movies", movieList: popularMoviesList),
 
-                    const SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             // Upcoming Movies
             buildMovieList(
                 title: "Upcoming Movies", movieList: upcomingMoviesList),
 
+            //const SizedBox(height: 20.0),
+            // Popular Movies
+            buildMovieList(
+                title: "Popular Movies", movieList: popularMoviesList),
 
-                    const SizedBox(height: 20.0),
+            //const SizedBox(height: 20.0),
             // Top Rated Movies
             buildMovieList(
-                title: "Top Rated Movies", movieList: TopRatedMoviesList),
+                title: "Top Ranked Movies", movieList: TopRatedMoviesList),
+
+            //const SizedBox(height:20.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+              child: Row(
+                children: <Widget>[
+                  // No built-in icon for a straight line
+                  Container(
+                    width: 6.0,
+                    height: 32.0, // Width of the vertical line
+                    color: Colors.red,
+                  ),
+                  const SizedBox(width: 5.0),
+                  const Text(
+                    'Popular People',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 5.0, top: 10.0),
+              height: 200.0, // Provide a specific height here
+              child: CelebritiesList(),
+            ),
           ]))),
           Padding(
               padding: const EdgeInsets.only(bottom: 10.0),

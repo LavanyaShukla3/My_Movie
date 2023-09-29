@@ -23,7 +23,8 @@ dependencies:
   firebase_auth: ^4.9.0
   firebase_ui_firestore: ^1.5.11
   firebase_storage: ^11.2.7
- 
+  smooth_page_indicator: ^1.1.0
+  google_fonts: ^6.1.0
 
 
 dev_dependencies:
@@ -47,16 +48,20 @@ flutter:
     - images/TmdbLogo.png
     - images/popcorn.png
 
-  #fonts:
-  #  - family: Nunito
-  #    fonts:
-  #  - asset: fonts/Nunito-Regular.ttf
-    # - asset: fonts/Schyler-Italic.ttf
-    #         style: italic
-   # - family: Signika
-   #   fonts:
-        #
-  #    - asset: fonts/Signika-Bold.ttf
+fonts:
+  - family: Nunito
+    fonts:
+      - asset: fonts/Nunito-Regular.ttf
+  # - asset: fonts/Schyler-Italic.ttf
+  #   style: italic
+  - family: Signika
+    fonts:
+      - asset: fonts/Signika-Bold.ttf
+  - family: PTSansNarrow
+    fonts:
+      - asset: fonts/PTSansNarrow-Bold.ttf
+      #- asset: fonts/PTSansNarrow-Regular.ttf
+
   #
 
   # To add assets to your application, add an assets section, like this:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String appBarTitle;
@@ -13,17 +14,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
-      leading: const BackButton(
-          color: Colors.grey,
-      ),
+
+      //to remove the back button in appbar and align the text to leftmost
+      automaticallyImplyLeading: false,
+
       title: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               appBarTitle,
-              style: const TextStyle(
-
+              style: GoogleFonts.signika(
                 color: Colors.red,
-                fontSize: 25.0,
+                fontSize: 22.0,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -31,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             if (icon != null)
               Icon(
                 icon,
-                color: Colors.grey,
+                color: Colors.black,
               ),
           ],
         ),

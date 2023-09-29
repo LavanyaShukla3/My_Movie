@@ -80,7 +80,9 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                             Icons.supervised_user_circle_rounded,
                             color: Color.fromARGB(255,96, 96, 96),
                           ),
-                          Container(color: Colors.grey, width: 5.0),
+                          SizedBox(width: 5.0),
+                          Container(color: Colors.grey, width: 1.0, height:41.0),
+
                           Expanded(
                             child: TextFormField(
                               obscureText: true,
@@ -128,7 +130,8 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                             Icons.mail,
                             color: Color.fromARGB(255,96, 96, 96),
                           ),
-                          Container(color: Colors.grey, width: 5.0),
+                          SizedBox(width: 5.0),
+                          Container(color: Colors.grey, width: 1.0, height:41.0),
                           Expanded(
                             child: TextFormField(
                               key: ValueKey('email'),
@@ -174,7 +177,9 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                             Icons.lock,
                             color: Color.fromARGB(255,96, 96, 96),
                           ),
-                          Container(color: Colors.grey, width: 5.0),
+                          SizedBox(width: 5.0),
+                          Container(color: Colors.grey, width: 1.0, height:41.0),
+
                           Expanded(
                             child: TextFormField(
                               key: ValueKey('Password'),
@@ -197,7 +202,7 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                     ),
                   ]),
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -212,7 +217,7 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                     child: isLogin ? Text('LOGIN',style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 20.0)) : Text('Sign Up', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 22.0)),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5.0,
                   ),
                   TextButton(
                     onPressed: () {
