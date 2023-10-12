@@ -1,62 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/utilities/api_info.dart';
+import 'package:my_movie/utilities/constants.dart';
 import 'package:my_movie/utilities/api_call.dart';
-import 'package:my_movie/utilities/movieModel.dart';
-import 'package:my_movie/utilities/buildMovieList.dart';
+import 'package:my_movie/utilities/movie_model.dart';
+import 'package:my_movie/utilities/build_movie_list.dart';
 import 'package:my_movie/utilities/appbar.dart';
-import 'package:my_movie/utilities/IconButton.dart';
-import 'package:my_movie/utilities/nowPlayingSlider.dart';
-import 'package:my_movie/utilities/popularPeople.dart';
+import 'package:my_movie/utilities/icon_button.dart';
+import 'package:my_movie/utilities/now_playing_slider.dart';
+import 'package:my_movie/utilities/popular_people.dart';
 
 //movie homepage where list of movie present
 // has options to search/navigate and create watchlist
 
-class movie_Homepage extends StatefulWidget {
-  const movie_Homepage({super.key});
+class MovieHomepage extends StatefulWidget {
+  const MovieHomepage({super.key});
 
   @override
-  State<movie_Homepage> createState() => _movie_HomepageState();
+  State<MovieHomepage> createState() => _MovieHomepageState();
 }
 
-class _movie_HomepageState extends State<movie_Homepage> {
-  final popular =
-      "http://api.themoviedb.org/3/discover/movie?api_key=${Api_Info.apiKey}&sort_by=popularity.desc";
-  final upcoming =
-      "https://api.themoviedb.org/3/movie/upcoming?api_key=${Api_Info.apiKey}";
-  final TopRated =
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=${Api_Info.apiKey}";
-
-  //result from api fetch data
-  // var popularMovies;
-  // var upcomingMovies;
-  // var TopRatedMovies;
-
+class _MovieHomepageState extends State<MovieHomepage> {
   List<MovieModel> popularMoviesList = [];
   List<MovieModel> upcomingMoviesList = [];
-  List<MovieModel> TopRatedMoviesList = [];
+  List<MovieModel> topRatedMoviesList = [];
 
   Future<void> fetchmovies() async {
     //to get info from tmdb
-    var popularMovieResponse = await api_Call(popular).getData();
-    var upcomingMovieResponse = await api_Call(upcoming).getData();
-    var TopRatedMovieResponse = await api_Call(TopRated).getData();
+    var popularMovieResponse = await ApiCall(Constants.popular).getData();
+    var upcomingMovieResponse = await ApiCall(Constants.upcoming).getData();
+    var topRatedMovieResponse = await ApiCall(Constants.topRated).getData();
 
     setState(() {
-      // to get access to result part from the reponse
+      // to get access to result part from the response
       List<dynamic> popularMoviesResults = popularMovieResponse['results'];
       List<dynamic> upcomingMoviesResults = upcomingMovieResponse['results'];
-      List<dynamic> TopRatedMoviesResults = TopRatedMovieResponse['results'];
+      List<dynamic> topRatedMoviesResults = topRatedMovieResponse['results'];
 
       //putting each element in form movieModel
-      popularMoviesResults.forEach((element) {
+      for (var element in popularMoviesResults) {
         popularMoviesList.add(MovieModel.fromJson(element));
-      });
-      upcomingMoviesResults.forEach((element) {
+      }
+      for (var element in upcomingMoviesResults) {
         upcomingMoviesList.add(MovieModel.fromJson(element));
-      });
-      TopRatedMoviesResults.forEach((element) {
-        TopRatedMoviesList.add(MovieModel.fromJson(element));
-      });
+      }
+      for (var element in topRatedMoviesResults) {
+        topRatedMoviesList.add(MovieModel.fromJson(element));
+      }
     });
   }
 
@@ -73,8 +61,8 @@ class _movie_HomepageState extends State<movie_Homepage> {
     // The build() method should be used solely for building the UI and not for initiating asynchronous operations.
     //fetchmovies();
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(appBarTitle: 'mymovielist', icon: Icons.search),
       ),
       body: Column(
@@ -83,7 +71,7 @@ class _movie_HomepageState extends State<movie_Homepage> {
               child: SingleChildScrollView(
                   child: Column(children: <Widget>[
             //now playing movie slider
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 3,
               child: NowPlayingMovies(),
@@ -91,18 +79,18 @@ class _movie_HomepageState extends State<movie_Homepage> {
 
             const SizedBox(height: 20.0),
             // Upcoming Movies
-            buildMovieList(
+            BuildMovieList(
                 title: "Upcoming Movies", movieList: upcomingMoviesList),
 
             //const SizedBox(height: 20.0),
             // Popular Movies
-            buildMovieList(
+            BuildMovieList(
                 title: "Popular Movies", movieList: popularMoviesList),
 
             //const SizedBox(height: 20.0),
             // Top Rated Movies
-            buildMovieList(
-                title: "Top Ranked Movies", movieList: TopRatedMoviesList),
+            BuildMovieList(
+                title: "Top Ranked Movies", movieList: topRatedMoviesList),
 
             //const SizedBox(height:20.0),
             Padding(
@@ -127,7 +115,7 @@ class _movie_HomepageState extends State<movie_Homepage> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 5.0, top: 10.0),
+              padding: const EdgeInsets.only(left: 5.0, top: 10.0),
               height: 200.0, // Provide a specific height here
               child: CelebritiesList(),
             ),
@@ -139,11 +127,11 @@ class _movie_HomepageState extends State<movie_Homepage> {
                   child: Container(
                     height: 50.0,
                     color: const Color.fromARGB(255, 245, 251, 254),
-                    child: Row(
+                    child: const Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          IconButtons(page: "movie_Homepage", icon: "home"),
+                          IconButtons(page: "MovieHomepage", icon: "home"),
                           //SizedBox(width: 80),
                           IconButtons(page: "searchPage", icon: "search"),
                           //SizedBox(width: 80),

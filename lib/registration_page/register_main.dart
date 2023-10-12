@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/Registeration_Page/background_Animation.dart';
-import 'package:my_movie/moviedb/moviehomepage.dart';
-import 'package:my_movie/authentication/googleauth_service.dart';
-import 'package:my_movie/authentication/gmailLogin.dart';
+import 'package:my_movie/registration_page/background_animation.dart';
+import 'package:my_movie/movie_db/movie_homepage.dart';
+import 'package:my_movie/authentication/google_auth_service.dart';
+import 'package:my_movie/authentication/gmail_login.dart';
 import 'package:my_movie/authentication/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-class register_main extends StatelessWidget {
-  const register_main({Key? key});
+class RegisterMain extends StatelessWidget {
+  const RegisterMain({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned.fill(
+          const Positioned.fill(
             child: BackgroundAnimation(),
           ),
           Positioned.fill(
@@ -31,12 +30,11 @@ class register_main extends StatelessWidget {
               children: <Widget>[
                 //google sig-in
                 GestureDetector(
-                  onTap: () => Auth_service().signInWithGoogle(context),
-
+                  onTap: () => AuthService().signInWithGoogle(),
                   child: Container(
-                    margin: EdgeInsets.only(left: 30.0, right: 30.0),
+                    margin: const EdgeInsets.only(left: 30.0, right: 30.0),
                     padding:
-                        EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0),
+                        const EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(35.0),
                       color: Colors.white,
@@ -72,9 +70,8 @@ class register_main extends StatelessWidget {
                     ),
                   ), // Replace with the actual screen you want to navigate to),
                   child: Container(
-                    margin: EdgeInsets.only(left: 30.0, right: 30.0),
-                    padding:
-                        EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0),
+                    margin: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(35.0),
                       color: Colors.transparent,
@@ -110,17 +107,17 @@ class register_main extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AlreadyRegistered(),
+                      builder: (context) => const AlreadyRegistered(),
                     ),
                   ), // Replace with the actual screen you want to navigate to),
                   child: const Text(
-                        'Already have an account?',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15.0,
-                        ),
-                      ),
+                    'Already have an account?',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15.0,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -129,7 +126,7 @@ class register_main extends StatelessWidget {
           //movie icon
           Center(
             child: Container(
-              margin: EdgeInsets.only(top: 100.0, left: 25.0, right: 25.0),
+              margin: const EdgeInsets.only(top: 100.0, left: 25.0, right: 25.0),
               child: Column(
                 children: <Widget>[
                   const Image(
@@ -137,7 +134,9 @@ class register_main extends StatelessWidget {
                     width: 60.0,
                     height: 60.0,
                   ),
-                  SizedBox(height: 20.0,),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                   Text(
                     'MY MOVIE LIST',
                     style: GoogleFonts.ptSansNarrow(
@@ -165,7 +164,6 @@ class register_main extends StatelessWidget {
             ),
           ),
 
-
           //SKIP
 
           Align(
@@ -174,12 +172,11 @@ class register_main extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => movie_Homepage()),
+                  MaterialPageRoute(builder: (context) => const MovieHomepage()),
                 );
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors
-                    .transparent, // Set the background color to transparent
+                backgroundColor: Colors.transparent, // Set the background color to transparent
               ),
               child: Container(
                 //margin: EdgeInsets.only(right: 30.0, top: 30.0),

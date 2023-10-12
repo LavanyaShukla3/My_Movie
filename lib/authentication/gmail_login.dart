@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/authentication/loginAuthFunction.dart';
+import 'package:my_movie/authentication/login_auth_function.dart';
+import 'package:my_movie/utilities/constants.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginScreen> createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
   final _formkey = GlobalKey<FormState>();
   bool isLogin = false;
-  String email = '';
-  String password = '';
-  String name = '';
+  String? email;
+  String? password;
+  String? username;
+
 
   String? _validatePasswordConfirmation(String? value) {
     if (value != password) {
-      return 'Passwords do not match';
+      return ErrorMessages.confirmPassword;
     }
     return null;
   }
@@ -70,68 +71,68 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          SizedBox(height: 50.0),
+          const SizedBox(height: 50.0),
           Form(
             key: _formkey,
             child: Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   !isLogin
                       ? Column(
+                    children: <Widget>[
+                      const Align(
+                        alignment: Alignment.topLeft,
+                        child: Text('Name',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 96, 96, 96))),
+                      ),
+                      const SizedBox(height: 10.0),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1.0,
+                            color: Colors.grey,
+                          ),
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(6.0)),
+                        ),
+                        child: Row(
                           children: <Widget>[
-                            const Align(
-                              alignment: Alignment.topLeft,
-                              child: Text('Name',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 96, 96, 96))),
+                            const Icon(
+                              Icons.supervised_user_circle_rounded,
+                              color: Color.fromARGB(255, 96, 96, 96),
                             ),
-                            SizedBox(height: 10.0),
+                            const SizedBox(width: 5.0),
                             Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1.0,
-                                  color: Colors.grey,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6.0)),
+                                color: Colors.grey,
+                                width: 1.0,
+                                height: 41.0),
+                            Container(color: Colors.grey, width: 5.0),
+                            Expanded(
+                              child: TextFormField(
+                                obscureText: true,
+                                key: const ValueKey('Name'),
+                                validator: (value) {
+                                  if (value.toString().isEmpty) {
+                                    return 'Enter Username';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onSaved: (value) {
+                                  setState(() {
+                                    username = value!;
+                                  });
+                                },
                               ),
-                              child: Row(
-                                children: <Widget>[
-                                  const Icon(
-                                    Icons.supervised_user_circle_rounded,
-                                    color: Color.fromARGB(255, 96, 96, 96),
-                                  ),
-                                  SizedBox(width: 5.0),
-                                  Container(
-                                      color: Colors.grey,
-                                      width: 1.0,
-                                      height: 41.0),
-                                  Container(color: Colors.grey, width: 5.0),
-                                  Expanded(
-                                    child: TextFormField(
-                                      obscureText: true,
-                                      key: ValueKey('Name'),
-                                      validator: (value) {
-                                        if (value.toString().isEmpty) {
-                                          return 'Enter Username';
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      onSaved: (value) {
-                                        setState(() {
-                                          name = value!;
-                                        });
-                                      },
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                            )
                           ],
-                        )
+                        ),
+                      ),
+                    ],
+                  )
                       : Container(),
                   const SizedBox(
                     height: 20,
@@ -151,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 1.0,
                             color: Colors.grey,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                          borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                         ),
                         child: Row(
                           children: <Widget>[
@@ -159,15 +160,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               Icons.mail,
                               color: Color.fromARGB(255, 96, 96, 96),
                             ),
-                            SizedBox(width: 5.0),
+                            const SizedBox(width: 5.0),
                             Container(
                                 color: Colors.grey, width: 1.0, height: 41.0),
                             Expanded(
                               child: TextFormField(
-                                key: ValueKey('email'),
+                                key: const ValueKey('email'),
                                 validator: (value) {
                                   if (!(value.toString().contains('@'))) {
-                                    return 'Invalid Email';
+                                    return ErrorMessages.invalidEmail;
                                   } else {
                                     return null;
                                   }
@@ -203,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 1.0,
                             color: Colors.grey,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                          borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                         ),
                         child: Row(
                           children: <Widget>[
@@ -211,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Icons.lock,
                               color: Color.fromARGB(255, 96, 96, 96),
                             ),
-                            SizedBox(width: 5.0),
+                            const SizedBox(width: 5.0),
                             Container(
                                 color: Colors.grey, width: 1.0, height: 41.0),
                             Container(color: Colors.grey, width: 5.0),
@@ -258,14 +259,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text('Confirm Password',
                               style: TextStyle(
                                   color: Color.fromARGB(255, 96, 96, 96)))),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
                             width: 1.0,
                             color: Colors.grey,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                          borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                         ),
                         child: Row(
                           children: <Widget>[
@@ -273,7 +274,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Icons.lock,
                               color: Color.fromARGB(255, 96, 96, 96),
                             ),
-                            SizedBox(width: 5.0),
+                            const SizedBox(width: 5.0),
                             Container(
                                 color: Colors.grey, width: 1.0, height: 41.0),
                             Expanded(
@@ -306,18 +307,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Save the form when all the fields are validated
                       if (_formkey.currentState!.validate()) {
                         _formkey.currentState!.save();
-                        isLogin
-                            ? signin(email, password)
-                            : signup(email, password);
+                        isLogin ? signin(email!, password!) : signup(email!, password!);
                       }
                     },
                     child: isLogin
-                        ? Text('LOGIN')
+                        ? const Text('LOGIN')
                         : const Text('Sign Up',
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 22.0)),
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 22.0)),
                   ),
                   const SizedBox(
                     height: 10,
@@ -329,10 +328,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     },
                     child: isLogin
-                        ? Text("REGISTER")
+                        ? const Text("REGISTER")
                         : const Text('Already Signed Up?',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 96, 96, 96))),
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 96, 96, 96))),
                   ),
                 ],
               ),

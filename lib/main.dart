@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/intro/intro1.dart';
-import 'package:my_movie/intro/intro2.dart';
-import 'package:my_movie/intro/intro3.dart';
-import 'package:my_movie/Registeration_Page/register_main.dart';
+import 'package:my_movie/registration_page/register_main.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 const yellow =0xFFD19537;
@@ -14,7 +11,7 @@ void main()async {
     WidgetsFlutterBinding.ensureInitialized();
     // Initialize Firebase
     await Firebase.initializeApp();
-    runApp(MyApp());
+    runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +27,7 @@ class MyApp extends StatelessWidget {
       //   primaryColor: Color(0xFFD0D6B5),
       // ),
       theme: ThemeData.light(),
-      home: register_main(),
+      home: const RegisterMain(),
     );
   }
 }

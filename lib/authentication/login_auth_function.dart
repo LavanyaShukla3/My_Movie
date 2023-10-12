@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-
 signup(String email, String password) async {
   try {
-    UserCredential userCredential = await FirebaseAuth.instance
+    await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
@@ -17,10 +15,9 @@ signup(String email, String password) async {
   }
 }
 
-signin(String email, password) async {
+signin(String email, String password) async {
   try {
-    UserCredential userCredential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
 
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {

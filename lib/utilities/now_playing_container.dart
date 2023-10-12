@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
-import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomContainer extends StatelessWidget {
-  CustomContainer({required this.url, required this.movieTitle, required this.genres});
+  const CustomContainer({Key? key,required this.url, required this.movieTitle, required this.genres}) : super(key: key);
 
   final String url;
   final String movieTitle;
@@ -40,13 +38,13 @@ class CustomContainer extends StatelessWidget {
                   Colors.white, // White at the bottom
                   Colors.white.withOpacity(0.0), // Transparent at the top
                 ],
-                stops: [0.0, 0.6], // Color stops
+                stops: const [0.0, 0.6], // Color stops
               ),
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 20.0),
+          padding: const EdgeInsets.only(left: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -69,9 +67,9 @@ class CustomContainer extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                 ),
-              SizedBox(width:4.0),
-              FaIcon(FontAwesomeIcons.solidCircle,size: 4.0, color: Colors.black,),
-                  SizedBox(width:4.0),
+              const SizedBox(width:4.0),
+              const FaIcon(FontAwesomeIcons.solidCircle,size: 4.0, color: Colors.black,),
+                  const SizedBox(width:4.0),
 
               Text(
                 genres, // Display the genre name here

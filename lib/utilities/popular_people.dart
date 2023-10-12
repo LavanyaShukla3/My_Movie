@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:my_movie/utilities/api_info.dart';
+import 'package:my_movie/utilities/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Celebrity {
   final String name;
   final String profilePath;
 
-  Celebrity({required this.name, required this.profilePath});
+  const Celebrity({required this.name, required this.profilePath,});
 }
 
 class CelebritiesList extends StatefulWidget {
+  const CelebritiesList({super.key});
+
   @override
-  _CelebritiesListState createState() => _CelebritiesListState();
+  CelebritiesListState createState() => CelebritiesListState();
 
 }
 
-class _CelebritiesListState extends State<CelebritiesList> {
+class CelebritiesListState extends State<CelebritiesList> {
   List<Celebrity> celebrities = [];
 
   @override
@@ -28,7 +30,7 @@ class _CelebritiesListState extends State<CelebritiesList> {
 
   Future<void> fetchData() async {
 
-    final response = await http.get(Uri.parse(Api_Info.popularPeople));
+    final response = await http.get(Uri.parse(Constants.popularPeople));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
@@ -72,7 +74,7 @@ class CelebrityCard extends StatelessWidget {
   final String name;
   final String profilePath;
 
-  CelebrityCard({required this.name, required this.profilePath});
+  const CelebrityCard({super.key, required this.name, required this.profilePath});
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,7 @@ class CelebrityCard extends StatelessWidget {
         ),
         const SizedBox(height: 10.0),
 
-        Container(
+        SizedBox(
           width: 45.0,
           child: Text(
             name,

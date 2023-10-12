@@ -1,10 +1,9 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:my_movie/moviedb/moviehomepage.dart';
 
-class Auth_service {
-  Future<User?> signInWithGoogle(BuildContext context) async {
+
+class AuthService {
+  Future<User?> signInWithGoogle() async {
     try {
       // Interactive sign-in
       final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
@@ -30,19 +29,13 @@ class Auth_service {
       if (userCredential.user != null) {
         // Navigate to the movie homepage
         //Replace the current route once it has finished animating in
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => movie_Homepage(),
-          ),
-        );
         return userCredential.user;
       }
 
       return null;
     } catch (e) {
       // Handle any errors here
-      print("Error signing in with Google: $e");
+
       return null;
     }
   }

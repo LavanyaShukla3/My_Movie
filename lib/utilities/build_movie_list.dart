@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_movie/utilities/movieTile.dart';
-import 'package:my_movie/utilities/movieModel.dart';
+import 'package:my_movie/utilities/movie_tile.dart';
+import 'package:my_movie/utilities/movie_model.dart';
 
-class buildMovieList extends StatelessWidget {
-  buildMovieList({required this.title, required this.movieList});
+class BuildMovieList extends StatelessWidget {
+  const BuildMovieList({ Key? key,required this.title, required this.movieList}): super(key: key);
   final String title;
   final List<MovieModel> movieList;
 
@@ -64,7 +63,7 @@ class buildMovieList extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height / 3,
           child: ListView.builder(
-            itemCount: movieList == null ? 0 : movieList.length,
+            itemCount: movieList.length ?? 0,
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemExtent: 120.0,

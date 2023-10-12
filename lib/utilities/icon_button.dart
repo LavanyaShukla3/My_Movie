@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/moviedb/listPage.dart';
-import 'package:my_movie/moviedb/navigationPage.dart';
-import 'package:my_movie/moviedb/searchPage.dart';
-import 'package:my_movie/moviedb/userInfoPage.dart';
-import 'package:my_movie/moviedb/moviehomepage.dart';
+import 'package:my_movie/movie_db/list_page.dart';
+import 'package:my_movie/movie_db/navigation_page.dart';
+import 'package:my_movie/movie_db/search_page.dart';
+import 'package:my_movie/movie_db/userinfo_page.dart';
+import 'package:my_movie/movie_db/movie_homepage.dart';
 
 class IconButtons extends StatefulWidget {
-  IconButtons({required this.page, required this.icon});
+  const IconButtons({ Key? key,required this.page, required this.icon}) : super(key: key);
   final String page;
   final String icon;
 
@@ -33,34 +33,34 @@ class _IconButtonsState extends State<IconButtons> {
   Widget getPage() {
     switch (widget.page) {
       case "movie_Homepage":
-        return movie_Homepage();
+        return const MovieHomepage();
       case "searchPage":
-        return searchPage();
+        return const SearchPage();
       case "navigationPage":
-        return navigationPage();
+        return const NavigationPage();
       case "listPage":
-        return listPage();
+        return const ListPage();
       case "userInfoPage":
-        return userInfoPage();
+        return const UserInfoPage();
       default:
-        return movie_Homepage(); // Default to movie_Homepage if not recognized
+        return const MovieHomepage(); // Default to movie_Homepage if not recognized
     }
   }
 
   Icon getIcon() {
     switch (widget.icon) {
       case "home":
-        return Icon(Icons.home);
+        return const Icon(Icons.home);
       case "search":
-        return Icon(Icons.search);
+        return const Icon(Icons.search);
       case "assistant_navigation":
-        return Icon(Icons.assistant_navigation);
+        return const Icon(Icons.assistant_navigation);
       case "list":
-        return Icon(Icons.list);
+        return const Icon(Icons.list);
       case "supervised_user_circle":
-        return Icon(Icons.supervised_user_circle);
+        return const Icon(Icons.supervised_user_circle);
       default:
-        return Icon(Icons.home);
+        return const Icon(Icons.home);
     }
   }
 }

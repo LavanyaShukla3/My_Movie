@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/authentication/loginAuthFunction.dart';
+import 'package:my_movie/authentication/login_auth_function.dart';
+import 'package:my_movie/utilities/constants.dart';
 
 class AlreadyRegistered extends StatefulWidget {
   const AlreadyRegistered({super.key});
 
   @override
-  State<AlreadyRegistered> createState() => _AlreadyRegisteredState();
+  State<AlreadyRegistered> createState() => AlreadyRegisteredState();
 }
 
-class _AlreadyRegisteredState extends State<AlreadyRegistered> {
+class AlreadyRegisteredState extends State<AlreadyRegistered> {
+
   final _formkey = GlobalKey<FormState>();
-  bool isLogin = true;
-  String email = '';
-  String password = '';
-  String name = '';
+  bool isLogin = false;
+  String? email;
+  String? password;
+  String? username;
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,7 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
           Form(
             key: _formkey,
             child: Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -80,23 +83,23 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                             Icons.supervised_user_circle_rounded,
                             color: Color.fromARGB(255,96, 96, 96),
                           ),
-                          SizedBox(width: 5.0),
+                          const SizedBox(width: 5.0),
                           Container(color: Colors.grey, width: 1.0, height:41.0),
 
                           Expanded(
                             child: TextFormField(
                               obscureText: true,
-                              key: ValueKey('Name'),
+                              key: const ValueKey('Name'),
                               validator: (value) {
                                 if (value.toString().length < 3) {
-                                  return 'Name requires atleast 3 characters';
+                                  return ErrorMessages.invalidUsername;
                                 } else {
                                   return null;
                                 }
                               },
                               onSaved: (value) {
                                 setState(() {
-                                  name = value!;
+                                  username = value!;
                                 });
                               },
                             ),
@@ -122,7 +125,7 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                           width: 1.0,
                           color: Colors.grey,
                         ),
-                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                        borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                       ),
                       child: Row(
                         children: <Widget>[
@@ -130,14 +133,14 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                             Icons.mail,
                             color: Color.fromARGB(255,96, 96, 96),
                           ),
-                          SizedBox(width: 5.0),
+                          const SizedBox(width: 5.0),
                           Container(color: Colors.grey, width: 1.0, height:41.0),
                           Expanded(
                             child: TextFormField(
-                              key: ValueKey('email'),
+                              key: const ValueKey('email'),
                               validator: (value) {
                                 if (!(value.toString().contains('@'))) {
-                                  return 'Invalid Email';
+                                  return ErrorMessages.invalidEmail;
                                 } else {
                                   return null;
                                 }
@@ -158,7 +161,7 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                   ),
                   //password
                   Column(children: <Widget>[
-                    Align(
+                    const Align(
                         alignment: Alignment.topLeft,
                         child: Text('Password',
                             style: TextStyle(color: Color.fromARGB(255,96, 96, 96)))),
@@ -169,7 +172,7 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                           width: 1.0,
                           color: Colors.grey,
                         ),
-                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                        borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                       ),
                       child: Row(
                         children: <Widget>[
@@ -177,12 +180,12 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                             Icons.lock,
                             color: Color.fromARGB(255,96, 96, 96),
                           ),
-                          SizedBox(width: 5.0),
+                          const SizedBox(width: 5.0),
                           Container(color: Colors.grey, width: 1.0, height:41.0),
 
                           Expanded(
                             child: TextFormField(
-                              key: ValueKey('Password'),
+                              key: const ValueKey('Password'),
                               validator: (value) {
                                 if (value.toString().length < 6) {
                                   return 'Password is small';
@@ -209,12 +212,10 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                       //save the form when all the fields are validated
                       if (_formkey.currentState!.validate()) {
                         _formkey.currentState!.save();
-                        isLogin
-                            ? signin(email, password)
-                            : signup(email, password);
+                        isLogin ? signin(email!, password!) : signup(email!, password!);
                       }
                     },
-                    child: isLogin ? Text('LOGIN',style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 20.0)) : Text('Sign Up', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 22.0)),
+                    child: isLogin ? const Text('LOGIN',style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 20.0)) : const Text('Sign Up', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 22.0)),
                   ),
                   const SizedBox(
                     height: 5.0,
@@ -226,7 +227,7 @@ class _AlreadyRegisteredState extends State<AlreadyRegistered> {
                       });
                     },
                     child:
-                    isLogin ? Text("REGISTER",style: TextStyle(color: Color.fromARGB(255,96, 96, 96)),) : Text('Already Signed Up?', style: TextStyle(color: Color.fromARGB(255,96, 96, 96)),),
+                    isLogin ? const Text("REGISTER",style: TextStyle(color: Color.fromARGB(255,96, 96, 96)),) : const Text('Already Signed Up?', style: TextStyle(color: Color.fromARGB(255,96, 96, 96)),),
                   ),
                 ],
               ),

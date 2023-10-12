@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 class BackgroundAnimation extends StatefulWidget {
+  const BackgroundAnimation({super.key});
+
   @override
-  _BackgroundAnimationState createState() => _BackgroundAnimationState();
+  BackgroundAnimationState createState() => BackgroundAnimationState();
 }
 
-class _BackgroundAnimationState extends State<BackgroundAnimation>
-    with SingleTickerProviderStateMixin {
+
+class BackgroundAnimationState extends State<BackgroundAnimation> with SingleTickerProviderStateMixin {
   //controller - manages the animation - duration
   late AnimationController _controller;
   //Animation-control the curves
   late Animation<double> _animation;
+
+
 
   @override
   void initState() {

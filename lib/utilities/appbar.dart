@@ -5,7 +5,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String appBarTitle;
   final IconData? icon;
 
-  CustomAppBar({required this.appBarTitle, this.icon});
+  const CustomAppBar({ Key? key,required this.appBarTitle, this.icon}) : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             if (icon != null)
               Icon(
                 icon,

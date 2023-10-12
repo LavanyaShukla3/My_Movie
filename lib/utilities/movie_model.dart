@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'dart:convert';
-
 
 // JSON response: hard to access the attributes by calling their names. prone to spelling mistake
 //so movieModel class to avoid this

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie/utilities/movieModel.dart';
+import 'package:my_movie/utilities/movie_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_movie/utilities/api_call.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,10 +8,11 @@ class MovieTile extends StatelessWidget {
   final List<MovieModel> movieList;
   final int movieIndex;
 
-  MovieTile({
+  const MovieTile({
+      Key? key,
     required this.movieList,
     required this.movieIndex,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class MovieTile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
-              api_Call.imagePathPrefix + movieList[movieIndex].poster_path,
+              ApiCall.imagePathPrefix + movieList[movieIndex].poster_path,
               fit: BoxFit.cover, // Adjust the fit mode as needed
             ),
           ),
@@ -42,7 +43,7 @@ class MovieTile extends StatelessWidget {
                         size: 13,
                         color: Color.fromARGB(255, 255, 204, 0),
                       ),
-                      SizedBox(width: 7),
+                      const SizedBox(width: 7),
                       Text(
                         movieList[movieIndex].vote_average.toString(),
                         style: GoogleFonts.nunito(

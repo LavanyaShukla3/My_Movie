@@ -1,12 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:my_movie/utilities/nowPlayingContainer.dart';
+import 'package:my_movie/utilities/now_playing_container.dart';
 import 'package:my_movie/utilities/api_call.dart';
-import 'package:my_movie/utilities/api_info.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:my_movie/utilities/constants.dart';
+
 
 //creates a 10 slide animation os now in theatres movies
 class NowPlayingMovies extends StatefulWidget {
+  const NowPlayingMovies({super.key});
+
   @override
   State<NowPlayingMovies> createState() => _NowPlayingMoviesState();
 }
@@ -35,7 +37,7 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
                     String movieTitle = movieTitles.length > index ? movieTitles[index] : "";
                     String genreName = genreNames.length > index ? genreNames[index] : "";
                     return CustomContainer(
-                      url: Api_Info.imagePathPrefix + posterPath,
+                      url: Constants.imagePathPrefix + posterPath,
                       movieTitle: movieTitle,
                       genres: genreName,
                     );
@@ -49,9 +51,9 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
                     // to fix the zoom in ration in poster
                     aspectRatio: 3 / 2,
                     autoPlayCurve: Curves.fastOutSlowIn,
-                    //continous rolling
+                    //continuous rolling
                     enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
                     // viewport determines - the visible portion each item occupies
                     viewportFraction: 1.0,
                   ),
@@ -60,8 +62,8 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
             );
           } else {
             // Data is still loading, you can show a loading indicator or other content
-            return Center(
-              child: const CircularProgressIndicator(
+            return const Center(
+              child: CircularProgressIndicator(
                 color: Colors.red,),
             ); // Replace with your loading indicator
           }
@@ -71,8 +73,8 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
   }
 
   Future<void> fetchmovies() async {
-    String nowPlayingUrl = Api_Info.nowPlayingMovies;
-    var nowPlayingResponse = await api_Call(nowPlayingUrl).getData();
+    String nowPlayingUrl = Constants.nowPlayingMovies;
+    var nowPlayingResponse = await ApiCall(nowPlayingUrl).getData();
     List<dynamic> nowPlayingResults = nowPlayingResponse['results'];
 
     posterPaths.clear();
@@ -94,7 +96,7 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
     genreNames = genres.map((genreIds) {
       // Use the genreMap to get genre names for each ID in the list
       List<String> genreList = genreIds.map<String>((genreId) {
-        return Api_Info.genreMap[genreId] ?? 'Unknown';
+        return Constants.genreMap[genreId] ?? 'Unknown';
       }).toList();
       // Join the genre names into a comma-separated string
       return genreList.join(', ');

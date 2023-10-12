@@ -1,13 +1,12 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:my_movie/utilities/api_info.dart';
 
-class api_Call {
-  static final String imagePathPrefix = 'https://image.tmdb.org/t/p/w500/';
+class ApiCall {
+  static const String imagePathPrefix = 'https://image.tmdb.org/t/p/w500/';
 
   //pass url of the movies
   final String url;
-  api_Call(this.url);
+  ApiCall(this.url);
 
   // Fetch data from API
   Future<Map<String, dynamic>> getData() async {
