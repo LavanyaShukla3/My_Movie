@@ -25,6 +25,7 @@ dependencies:
   firebase_storage: ^11.2.7
   smooth_page_indicator: ^1.1.0
   google_fonts: ^6.1.0
+  flutter_screenutil: ^5.9.0
 
 
 dev_dependencies:
@@ -41,12 +42,11 @@ flutter:
     - images/horror.png
     - images/romance.png
     - images/sci-fi.png
-    - images/gmail.png
     - images/google.png
-    - images/movie.jpeg
     - images/movie.jpeg
     - images/TmdbLogo.png
     - images/popcorn.png
+    - images/email.png
 
 fonts:
   - family: Nunito
@@ -61,6 +61,11 @@ fonts:
     fonts:
       - asset: fonts/PTSansNarrow-Bold.ttf
       #- asset: fonts/PTSansNarrow-Regular.ttf
+
+  - family: Gabarito
+    fonts:
+      - asset: fonts/Gabarito-Regular.ttf
+      - asset: fonts/Gabarito-Bold.ttf
 
   #
 

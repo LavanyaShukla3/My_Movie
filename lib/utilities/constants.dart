@@ -1,3 +1,6 @@
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Constants
 {
@@ -51,3 +54,19 @@ class ErrorMessages {
   static const confirmPassword = 'Passwords do NOT match';
   static const invalidUsername = 'Name requires atleast 3 characters';
 }
+
+TextTheme textTheme = TextTheme(
+  titleMedium: TextStyle(
+    fontFamily: 'Gabarito',
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  ),
+  bodyMedium: TextStyle(
+    fontFamily: 'Gabarito',
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  ),
+);
+

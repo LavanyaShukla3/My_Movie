@@ -5,6 +5,8 @@ import 'package:my_movie/authentication/google_auth_service.dart';
 import 'package:my_movie/authentication/gmail_login.dart';
 import 'package:my_movie/authentication/register.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_movie/utilities/custom_authetication_button.dart';
+import 'package:my_movie/utilities/constants.dart';
 
 class RegisterMain extends StatelessWidget {
   const RegisterMain({Key? key}) : super(key: key);
@@ -31,33 +33,7 @@ class RegisterMain extends StatelessWidget {
                 //google sig-in
                 GestureDetector(
                   onTap: () => AuthService().signInWithGoogle(),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 30.0, right: 30.0),
-                    padding:
-                        const EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(35.0),
-                      color: Colors.white,
-                    ),
-                    child: const Row(
-                      children: <Widget>[
-                        Image(
-                          image: AssetImage('images/google.png'),
-                          width: 40.0,
-                          height: 40.0,
-                        ),
-                        SizedBox(width: 49),
-                        Text(
-                          'SIGN IN WITH GOOGLE',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: CustomAutheticationButton(colour: Colors.white,image: 'images/google.png', text: 'SIGN IN WITH GOOGLE', texttype:  textTheme.titleMedium),
                 ),
                 const SizedBox(height: 15.0),
 
@@ -69,36 +45,7 @@ class RegisterMain extends StatelessWidget {
                       builder: (context) => LoginScreen(),
                     ),
                   ), // Replace with the actual screen you want to navigate to),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 30.0, right: 30.0),
-                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(35.0),
-                      color: Colors.transparent,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2.0,
-                      ),
-                    ),
-                    child: const Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.email_outlined,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 69),
-                        Text(
-                          'SIGN UP WITH EMAIL',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        // Use `width` here, not `height
-                      ],
-                    ),
-                  ),
+                  child: CustomAutheticationButton(colour: Colors.transparent,image: 'images/email.png', text: 'SIGN UP WITH EMAIL', texttype:  textTheme.bodyMedium,),
                 ),
                 const SizedBox(height: 15.0),
 
