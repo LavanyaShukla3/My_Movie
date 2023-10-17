@@ -14,7 +14,7 @@ class NowPlayingMovies extends StatefulWidget {
 }
 
 class _NowPlayingMoviesState extends State<NowPlayingMovies> {
-  List<String> posterPaths = [];
+  List<String> backdropPaths = [];
   List<String> movieTitles = [];
   List<dynamic> genres=[];
   late List<String> genreNames;
@@ -31,13 +31,13 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
             return ListView(
               children: [
                 CarouselSlider(
-                  items: posterPaths.asMap().entries.map((entry) {
+                  items: backdropPaths.asMap().entries.map((entry) {
                     int index = entry.key;
-                    String posterPath = entry.value;
+                    String backdropPath = entry.value;
                     String movieTitle = movieTitles.length > index ? movieTitles[index] : "";
                     String genreName = genreNames.length > index ? genreNames[index] : "";
                     return CustomContainer(
-                      url: Constants.imagePathPrefix + posterPath,
+                      url: Constants.imagePathPrefix + backdropPath,
                       movieTitle: movieTitle,
                       genres: genreName,
                     );
@@ -77,17 +77,17 @@ class _NowPlayingMoviesState extends State<NowPlayingMovies> {
     var nowPlayingResponse = await ApiCall(nowPlayingUrl).getData();
     List<dynamic> nowPlayingResults = nowPlayingResponse['results'];
 
-    posterPaths.clear();
+    backdropPaths.clear();
     movieTitles.clear();
 
     //storing 1st 10 movie posters in the list
     for (int i = 0; i < 10 && i < nowPlayingResults.length; i++) {
-      var posterPath = nowPlayingResults[i]['poster_path'];
+      var backdropPath = nowPlayingResults[i]['backdrop_path'];
       var movieTitle = nowPlayingResults[i]['original_title'];
       var genre = nowPlayingResults[i]['genre_ids'];
 
-      if (posterPath != null && movieTitle != null) {
-        posterPaths.add(posterPath);
+      if (backdropPath != null && movieTitle != null) {
+        backdropPaths.add(backdropPath);
         movieTitles.add(movieTitle);
         genres.add(genre);
       }

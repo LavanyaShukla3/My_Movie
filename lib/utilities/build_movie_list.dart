@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_movie/utilities/movie_tile.dart';
 import 'package:my_movie/utilities/movie_model.dart';
+import 'package:my_movie/utilities/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BuildMovieList extends StatelessWidget {
   const BuildMovieList({ Key? key,required this.title, required this.movieList}): super(key: key);
@@ -31,22 +33,19 @@ class BuildMovieList extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       title,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.black,
-                      ),
+                      style: textTheme.bodyLarge,
                     ),
 
                     GestureDetector(
                       onTap: () {
                         // Handle the 'VIEW ALL' tap event here
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.only(right: 10.0),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 13.0),
                         child: Text(
                           'VIEW ALL',
                           style: TextStyle(
-                            fontSize: 12.0,
+                            fontSize: 12.sp,
                             color: Colors.black,
                           ),
                         ),
@@ -63,7 +62,7 @@ class BuildMovieList extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height / 3,
           child: ListView.builder(
-            itemCount: movieList.length ?? 0,
+            itemCount: movieList.length,
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemExtent: 120.0,

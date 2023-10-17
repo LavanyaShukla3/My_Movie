@@ -74,23 +74,23 @@ class _MovieHomepageState extends State<MovieHomepage> {
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 3,
-              child: NowPlayingMovies(),
+              child: const NowPlayingMovies(),
             ),
 
             const SizedBox(height: 20.0),
             // Upcoming Movies
             BuildMovieList(
-                title: "Upcoming Movies", movieList: upcomingMoviesList),
+                title: "UPCOMING MOVIES", movieList: upcomingMoviesList),
 
             //const SizedBox(height: 20.0),
             // Popular Movies
             BuildMovieList(
-                title: "Popular Movies", movieList: popularMoviesList),
+                title: "POPULAR MOVIES", movieList: popularMoviesList),
 
             //const SizedBox(height: 20.0),
             // Top Rated Movies
             BuildMovieList(
-                title: "Top Ranked Movies", movieList: topRatedMoviesList),
+                title: "TOP RANKED", movieList: topRatedMoviesList),
 
             //const SizedBox(height:20.0),
             Padding(
@@ -104,12 +104,9 @@ class _MovieHomepageState extends State<MovieHomepage> {
                     color: Colors.red,
                   ),
                   const SizedBox(width: 5.0),
-                  const Text(
-                    'Popular People',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.black,
-                    ),
+                  Text(
+                    'POPULAR PEOPLE',
+                    style:textTheme.bodyLarge,
                   ),
                 ],
               ),
@@ -117,7 +114,7 @@ class _MovieHomepageState extends State<MovieHomepage> {
             Container(
               padding: const EdgeInsets.only(left: 5.0, top: 10.0),
               height: 200.0, // Provide a specific height here
-              child: CelebritiesList(),
+              child: const CelebritiesList(),
             ),
           ]))),
           Padding(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:my_movie/utilities/constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String appBarTitle;
@@ -23,11 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: <Widget>[
             Text(
               appBarTitle,
-              style: GoogleFonts.signika(
-                color: Colors.red,
-                fontSize: 22.0,
-                fontWeight: FontWeight.w400,
-              ),
+              style: textTheme.displayMedium,
             ),
             const Spacer(),
             if (icon != null)

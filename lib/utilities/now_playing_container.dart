@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:my_movie/utilities/constants.dart';
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer({Key? key,required this.url, required this.movieTitle, required this.genres}) : super(key: key);
@@ -51,33 +51,20 @@ class CustomContainer extends StatelessWidget {
             children: [
               Text(
                 movieTitle,
-                style: GoogleFonts.signika(
-                  color: Colors.black,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: textTheme.displaySmall,
               ),
               Row(
                 children:<Widget>[
                 Text(
                   '2023',
-                    style: GoogleFonts.nunito(
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                    ),
-                ),
+                    style: textTheme.bodyMedium,),
               const SizedBox(width:4.0),
               const FaIcon(FontAwesomeIcons.solidCircle,size: 4.0, color: Colors.black,),
                   const SizedBox(width:4.0),
 
               Text(
                 genres, // Display the genre name here
-                style: GoogleFonts.nunito(
-                fontSize: 14,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),),
+                style: textTheme.bodyMedium,),
 
             ],),
         ],),

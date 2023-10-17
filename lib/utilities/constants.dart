@@ -52,21 +52,60 @@ class ErrorMessages {
   static const invalidName = 'Invalid Name';
   static const invalidEmail = 'Invalid Email';
   static const confirmPassword = 'Passwords do NOT match';
-  static const invalidUsername = 'Name requires atleast 3 characters';
+  static const invalidUsername = 'Name requires at least 3 characters';
+  static const weakPassword = 'Password requires at least 3 characters';
+  static const emailAlreadyRegistered = 'The account already exists for that email';
+  static const invalidUser ='No user found for that email';
 }
 
 TextTheme textTheme = TextTheme(
-  titleMedium: TextStyle(
-    fontFamily: 'Gabarito',
-    fontSize: 16.sp,
+  //My movie list - registration page
+    displayLarge: GoogleFonts.pathwayGothicOne(
+      fontWeight: FontWeight.w800,
+      color: Colors.white,
+      fontSize: 37.sp,
+    ),
+  //appbar
+  displayMedium:GoogleFonts.signika(
+    color: Colors.red,
+    fontSize: 22.sp,
     fontWeight: FontWeight.w400,
+  ),
+  // movie genre title
+  bodyLarge: TextStyle(
+    fontSize: 17.sp,
     color: Colors.black,
+    fontWeight: FontWeight.w300,
   ),
-  bodyMedium: TextStyle(
-    fontFamily: 'Gabarito',
-    fontSize: 16.sp,
-    fontWeight: FontWeight.w400,
-    color: Colors.white,
-  ),
-);
 
+  //slider's movie name
+  displaySmall:GoogleFonts.signika(
+    color: Colors.black,
+    fontSize: 27.sp,
+    fontWeight: FontWeight.w400,
+  ),
+
+  //movie name + slider's movie genre
+  bodyMedium: GoogleFonts.nunito(
+    fontSize: 16.sp,
+    color: Colors.black,
+    fontWeight: FontWeight.w500,
+  ),
+
+
+  // skip - registration page
+  titleMedium: GoogleFonts.nunito(
+      fontWeight: FontWeight.w200,
+      color: Colors.white,
+      fontSize: 21.sp,
+    ),
+
+  headlineMedium : TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 22.sp,
+    color: Colors.black
+  ),
+
+// ),
+
+);

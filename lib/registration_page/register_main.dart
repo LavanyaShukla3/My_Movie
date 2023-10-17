@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_movie/registration_page/background_animation.dart';
 import 'package:my_movie/movie_db/movie_homepage.dart';
 import 'package:my_movie/authentication/google_auth_service.dart';
-import 'package:my_movie/authentication/gmail_login.dart';
-import 'package:my_movie/authentication/register.dart';
+import 'package:my_movie/authentication/welcome_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_movie/utilities/custom_authetication_button.dart';
 import 'package:my_movie/utilities/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterMain extends StatelessWidget {
   const RegisterMain({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class RegisterMain extends StatelessWidget {
                 //google sig-in
                 GestureDetector(
                   onTap: () => AuthService().signInWithGoogle(),
-                  child: CustomAutheticationButton(colour: Colors.white,image: 'images/google.png', text: 'SIGN IN WITH GOOGLE', texttype:  textTheme.titleMedium),
+                  child: const CustomAutheticationButton(colour: Colors.white,image: 'images/google.png', text: 'SIGN IN WITH GOOGLE',textcolour: Colors.black),
                 ),
                 const SizedBox(height: 15.0),
 
@@ -42,27 +42,30 @@ class RegisterMain extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => WelcomePage(text:'sign in', confirmPassword:false, name: false),
                     ),
                   ), // Replace with the actual screen you want to navigate to),
-                  child: CustomAutheticationButton(colour: Colors.transparent,image: 'images/email.png', text: 'SIGN UP WITH EMAIL', texttype:  textTheme.bodyMedium,),
+                  child: const CustomAutheticationButton(colour: Colors.transparent,image: 'images/email.png', text: 'SIGN UP WITH EMAIL',textcolour: Colors.white),
                 ),
                 const SizedBox(height: 15.0),
 
                 //already have an account
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AlreadyRegistered(),
-                    ),
-                  ), // Replace with the actual screen you want to navigate to),
-                  child: const Text(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WelcomePage(text: 'sign Up', confirmPassword: true, name: true),
+                      ),
+                    );
+                  },
+                  // Replace with the actual screen you want to navigate to),
+                  child: Text(
                     'Already have an account?',
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15.0,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 15.sp,
                     ),
                   ),
                 ),
@@ -86,20 +89,16 @@ class RegisterMain extends StatelessWidget {
                   ),
                   Text(
                     'MY MOVIE LIST',
-                    style: GoogleFonts.ptSansNarrow(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                      fontSize: 30.0,
-                    ),
+                    style: textTheme.displayLarge,
                   ),
                   Center(
                     child: Text(
                       'One stop destination for everything movies',
                       style: GoogleFonts.nunito(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        fontSize: 18.0,
-                      ),
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                      fontSize: 18.sp,
+                    ),
                       textAlign: TextAlign.center, // Center-align the text
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -110,7 +109,6 @@ class RegisterMain extends StatelessWidget {
               ),
             ),
           ),
-
           //SKIP
 
           Align(
@@ -127,15 +125,11 @@ class RegisterMain extends StatelessWidget {
               ),
               child: Container(
                 //margin: EdgeInsets.only(right: 30.0, top: 30.0),
-                padding: const EdgeInsets.only(top: 40.0, right: 0.0),
+                padding: const EdgeInsets.only(top: 44.0, right: 5.0),
                 color: Colors.transparent,
                 child: Text(
                   'SKIP',
-                  style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
-                    fontSize: 15.0,
-                  ),
+                  style: textTheme.bodyLarge,
                 ),
               ),
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_movie/registration_page/register_main.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 const yellow =0xFFD19537;
 const blue=0xFF1F2F34;
@@ -20,14 +22,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // theme: ThemeData(
-      //   scaffoldBackgroundColor: Color(0xFFD0D6B5),
-      //     backgroundColor: Color(0xFFD0D6B5),
-      //   primaryColor: Color(0xFFD0D6B5),
-      // ),
+    return ScreenUtilInit(
+        designSize: const Size(390,844),
+    builder: (context, widget) => MaterialApp(
       theme: ThemeData.light(),
       home: const RegisterMain(),
+    )
     );
   }
 }

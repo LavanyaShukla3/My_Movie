@@ -3,6 +3,7 @@ import 'package:my_movie/utilities/movie_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_movie/utilities/api_call.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_movie/utilities/constants.dart';
 
 class MovieTile extends StatelessWidget {
   final List<MovieModel> movieList;
@@ -40,7 +41,7 @@ class MovieTile extends StatelessWidget {
                     children: <Widget>[
                       const FaIcon(
                         FontAwesomeIcons.solidStar,
-                        size: 13,
+                        size: 13.0,
                         color: Color.fromARGB(255, 255, 204, 0),
                       ),
                       const SizedBox(width: 7),
@@ -69,11 +70,7 @@ class MovieTile extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(
                   movieList[movieIndex].title,
-                  style: GoogleFonts.nunito(
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: textTheme.bodyMedium,
                   softWrap: false,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
