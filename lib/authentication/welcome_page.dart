@@ -52,7 +52,7 @@ class WelcomePage extends StatelessWidget {
           CommonAuthPage(
             showConfirmPassword: confirmPassword,
             text1: 'LOGIN',
-            text2: 'Register',
+            text2: 'REGISTER',
             subtext1: "Don't have an account? Sign Up",
             subtext2: "Already have an account?",
               showName: name,
