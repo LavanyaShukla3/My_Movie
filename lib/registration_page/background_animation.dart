@@ -22,7 +22,7 @@ class BackgroundAnimationState extends State<BackgroundAnimation> with SingleTic
     _controller = AnimationController(
       //this represents current context
       vsync: this,
-      duration: Duration(seconds: 10),
+      duration: const Duration(seconds: 10),
     )..repeat();
 
     //tween- creating an intermediate state between the two endpoints

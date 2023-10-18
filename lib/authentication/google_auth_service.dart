@@ -1,42 +1,31 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class AuthService {
-  Future<User?> signInWithGoogle() async {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  Future<UserCredential?> googleSignIn() async {
     try {
-      // Interactive sign-in
-      final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
-      if (gUser == null) {
-        // User canceled the sign-in process
-        return null;
-      }
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
 
-      // Obtain auth details from the request
-      final GoogleSignInAuthentication gAuth = await gUser.authentication;
-
-      // Create new credential for the user
-      final credential = GoogleAuthProvider.credential(
-        accessToken: gAuth.accessToken,
-        idToken: gAuth.idToken,
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
-      // Final sign-in with Firebase
-      final UserCredential userCredential =
-      await FirebaseAuth.instance.signInWithCredential(credential);
-
-      // Check if the user is signed in successfully
-      if (userCredential.user != null) {
-        // Navigate to the movie homepage
-        //Replace the current route once it has finished animating in
-        return userCredential.user;
-      }
-
-      return null;
+      final UserCredential userCredential = await _auth.signInWithCredential(credential);
+      return userCredential;
     } catch (e) {
-      // Handle any errors here
-
+      print('Error signing in with Google: $e');
       return null;
     }
   }
+
+  void signOut() async {
+    await _auth.signOut();
+    await _googleSignIn.signOut();
+  }
 }
+

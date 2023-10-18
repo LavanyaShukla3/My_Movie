@@ -78,6 +78,13 @@ TextTheme textTheme = TextTheme(
     fontWeight: FontWeight.w300,
   ),
 
+  //skip
+  titleLarge:TextStyle(
+    fontSize: 17.sp,
+    color: Colors.white,
+    fontWeight: FontWeight.w300,
+  ),
+
   //slider's movie name
   displaySmall:GoogleFonts.signika(
     color: Colors.black,

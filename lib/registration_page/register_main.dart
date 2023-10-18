@@ -7,9 +7,28 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_movie/utilities/custom_authetication_button.dart';
 import 'package:my_movie/utilities/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterMain extends StatelessWidget {
-  const RegisterMain({Key? key}) : super(key: key);
+  final SharedPreferences prefs;
+  final bool hasPressedSkip;
+  const RegisterMain({Key? key, required this.prefs, required this.hasPressedSkip})
+      : super(key: key);
+
+  void _handleSkipButton(BuildContext context) {
+    if (!hasPressedSkip) {
+      // If the user hasn't pressed the "SKIP" button before, set the flag in SharedPreferences
+      prefs.setBool('hasPressedSkip', true);
+    }
+
+    // Always navigate to the homepage when the "SKIP" button is pressed
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MovieHomepage()),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +51,16 @@ class RegisterMain extends StatelessWidget {
               children: <Widget>[
                 //google sig-in
                 GestureDetector(
-                  onTap: () => AuthService().signInWithGoogle(),
+                  onTap: () async {
+                    AuthService authService = AuthService();
+                    UserCredential? userCredential = await authService.googleSignIn();
+                    if (userCredential != null) {
+                      User? user = userCredential.user;
+                      print('Successfully LogIn');
+                    } else {
+                      print('Please Try again');
+                    }
+                  },
                   child: const CustomAutheticationButton(colour: Colors.white,image: 'images/google.png', text: 'SIGN IN WITH GOOGLE',textcolour: Colors.black),
                 ),
                 const SizedBox(height: 15.0),
@@ -42,7 +70,7 @@ class RegisterMain extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => WelcomePage(text:'sign in', confirmPassword:false, name: false),
+                      builder: (context) => const WelcomePage(text:'sign in', confirmPassword:false, name: false),
                     ),
                   ), // Replace with the actual screen you want to navigate to),
                   child: const CustomAutheticationButton(colour: Colors.transparent,image: 'images/email.png', text: 'SIGN UP WITH EMAIL',textcolour: Colors.white),
@@ -55,7 +83,7 @@ class RegisterMain extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => WelcomePage(text: 'sign Up', confirmPassword: true, name: true),
+                        builder: (context) => const WelcomePage(text: 'sign Up', confirmPassword: true, name: true),
                       ),
                     );
                   },
@@ -115,10 +143,7 @@ class RegisterMain extends StatelessWidget {
             alignment: AlignmentDirectional.topEnd,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MovieHomepage()),
-                );
+                _handleSkipButton(context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent, // Set the background color to transparent
@@ -129,7 +154,7 @@ class RegisterMain extends StatelessWidget {
                 color: Colors.transparent,
                 child: Text(
                   'SKIP',
-                  style: textTheme.bodyLarge,
+                  style: textTheme.titleLarge,
                 ),
               ),
             ),

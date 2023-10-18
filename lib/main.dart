@@ -3,6 +3,8 @@ import 'package:my_movie/registration_page/register_main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_movie/app_theme/app_theme_light.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 void main()async {
 
@@ -10,11 +12,18 @@ void main()async {
     WidgetsFlutterBinding.ensureInitialized();
     // Initialize Firebase
     await Firebase.initializeApp();
-    runApp(const MyApp());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //skip button in register_main
+    bool hasPressedSkip = prefs.getBool('hasPressedSkip') ?? false;
+
+    runApp(MyApp(prefs: prefs, hasPressedSkip: hasPressedSkip));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final SharedPreferences prefs;
+  final bool hasPressedSkip;
+
+  const MyApp({Key? key, required this.prefs, required this.hasPressedSkip}): super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -27,7 +36,7 @@ class MyApp extends StatelessWidget {
         primaryColor: AppThemeLight().colorPrimary,
         scaffoldBackgroundColor: AppThemeLight().colorSecondary,
     ),
-      home: const RegisterMain(),
+      home: RegisterMain(prefs: prefs, hasPressedSkip: hasPressedSkip),
     )
     );
   }
