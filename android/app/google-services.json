@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "952537623058",
-    "project_id": "mymovie-d8fd6",
-    "storage_bucket": "mymovie-d8fd6.appspot.com"
+    "project_number": "344962057085",
+    "project_id": "mymovie-ac407",
+    "storage_bucket": "mymovie-ac407.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:952537623058:android:58b095698144654e8d06cb",
+        "mobilesdk_app_id": "1:344962057085:android:91333b11ff8ebe3fca0214",
         "android_client_info": {
           "package_name": "com.lavanya.MyMovie"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "952537623058-qkd3d43jksc5vrjqpg13c7vnkthmgfed.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBcP_ni3cBUOIbBIlIJkAuv9JMtdM3snYY"
+          "current_key": "AIzaSyAmV2OTvaFdxUEjJuHJsjXtixO16kF1BHY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "952537623058-qkd3d43jksc5vrjqpg13c7vnkthmgfed.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
