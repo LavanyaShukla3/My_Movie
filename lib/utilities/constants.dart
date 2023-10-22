@@ -2,6 +2,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
+var ksizedbox=  const SizedBox(height: 20,);
+
 class Constants
 {
 //use static to use it directly
@@ -60,11 +63,11 @@ class ErrorMessages {
 
 TextTheme textTheme = TextTheme(
   //My movie list - registration page
-    displayLarge: GoogleFonts.pathwayGothicOne(
-      fontWeight: FontWeight.w800,
-      color: Colors.white,
-      fontSize: 37.sp,
-    ),
+  displayLarge: GoogleFonts.pathwayGothicOne(
+    fontWeight: FontWeight.w800,
+    color: Colors.white,
+    fontSize: 37.sp,
+  ),
   //appbar
   displayMedium:GoogleFonts.signika(
     color: Colors.red,
@@ -102,15 +105,15 @@ TextTheme textTheme = TextTheme(
 
   // skip - registration page
   titleMedium: GoogleFonts.nunito(
-      fontWeight: FontWeight.w200,
-      color: Colors.white,
-      fontSize: 21.sp,
-    ),
+    fontWeight: FontWeight.w200,
+    color: Colors.white,
+    fontSize: 21.sp,
+  ),
 
   headlineMedium : TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 22.sp,
-    color: Colors.black
+      fontWeight: FontWeight.w500,
+      fontSize: 22.sp,
+      color: Colors.black
   ),
 
 // ),

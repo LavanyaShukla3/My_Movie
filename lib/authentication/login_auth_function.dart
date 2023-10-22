@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_movie/utilities/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+//register form
 signup(String email, String password) async {
   try {
-    await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password);
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
       print(ErrorMessages.weakPassword);
@@ -15,7 +17,7 @@ signup(String email, String password) async {
     print(e);
   }
 }
-
+//email login
 signin(String email, String password) async {
   try {
     await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);

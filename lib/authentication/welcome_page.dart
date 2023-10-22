@@ -2,16 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:my_movie/authentication/common_auth.dart';
 import 'package:my_movie/utilities/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:my_movie/movie_db/movie_homepage.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
   final String text;
   final bool confirmPassword;
   final bool name;
 
-  WelcomePage({required this.text, required this.confirmPassword, required this.name});
+  const WelcomePage({Key? key,required this.text, required this.confirmPassword, required this.name,}): super(key: key);
+
+  @override
+  WelcomePageState createState() => WelcomePageState();
+}
+
+class WelcomePageState extends State<WelcomePage> {
+
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -25,7 +35,7 @@ class WelcomePage extends StatelessWidget {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      text,
+                      widget.text,
                       style: textTheme.headlineMedium,
                     ),
                   ),
@@ -50,12 +60,12 @@ class WelcomePage extends StatelessWidget {
           ),
           const SizedBox(height: 50.0),
           CommonAuthPage(
-            showConfirmPassword: confirmPassword,
+            showConfirmPassword: widget.confirmPassword,
             text1: 'LOGIN',
             text2: 'REGISTER',
             subtext1: "Don't have an account? Sign Up",
             subtext2: "Already have an account?",
-              showName: name,
+            showName: widget.name,
           ),
         ],
       ),

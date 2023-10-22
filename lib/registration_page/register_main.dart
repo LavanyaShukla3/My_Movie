@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:my_movie/authentication/email_login.dart';
 import 'package:my_movie/registration_page/background_animation.dart';
 import 'package:my_movie/movie_db/movie_homepage.dart';
 import 'package:my_movie/authentication/google_auth_service.dart';
-import 'package:my_movie/authentication/welcome_page.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_movie/utilities/custom_authetication_button.dart';
 import 'package:my_movie/utilities/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../authentication/form_registeration.dart';
+
 
 class RegisterMain extends StatelessWidget {
   final SharedPreferences prefs;
@@ -70,7 +73,7 @@ class RegisterMain extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const WelcomePage(text:'sign in', confirmPassword:false, name: false),
+                      builder: (context) => const RegisterationPage(),
                     ),
                   ), // Replace with the actual screen you want to navigate to),
                   child: const CustomAutheticationButton(colour: Colors.transparent,image: 'images/email.png', text: 'SIGN UP WITH EMAIL',textcolour: Colors.white),
@@ -83,7 +86,7 @@ class RegisterMain extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const WelcomePage(text: 'sign Up', confirmPassword: true, name: true),
+                        builder: (context) => const RegisterationPage(),
                       ),
                     );
                   },
@@ -123,10 +126,10 @@ class RegisterMain extends StatelessWidget {
                     child: Text(
                       'One stop destination for everything movies',
                       style: GoogleFonts.nunito(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                      fontSize: 18.sp,
-                    ),
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                        fontSize: 18.sp,
+                      ),
                       textAlign: TextAlign.center, // Center-align the text
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
