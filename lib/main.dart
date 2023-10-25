@@ -30,13 +30,9 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       builder: (context, widget) {
-
-
         return Builder(
           builder: (context) {
-            // Call whereToGo function again to navigate
-
-            return MaterialApp(
+          return MaterialApp(
               theme: ThemeData.light().copyWith(
                 primaryColor: AppThemeLight().colorPrimary,
                 scaffoldBackgroundColor: AppThemeLight().colorSecondary,
