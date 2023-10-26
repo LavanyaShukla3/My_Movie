@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:my_movie/authentication/email_login.dart';
 import 'package:my_movie/registration_page/background_animation.dart';
 import 'package:my_movie/movie_db/movie_homepage.dart';
-import 'package:my_movie/authentication/google_auth_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_movie/utilities/custom_authetication_button.dart';
 import 'package:my_movie/utilities/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../authentication/form_registeration.dart';
-
+import '../authentication/google_auth_service.dart';
 
 class RegisterMain extends StatelessWidget {
   final SharedPreferences prefs;
   final bool hasPressedSkip;
-  const RegisterMain({Key? key, required this.prefs, required this.hasPressedSkip})
+  const RegisterMain(
+      {Key? key, required this.prefs, required this.hasPressedSkip})
       : super(key: key);
 
   void _handleSkipButton(BuildContext context) {
@@ -31,9 +30,10 @@ class RegisterMain extends StatelessWidget {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
+    AuthService authService = AuthService();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -51,35 +51,36 @@ class RegisterMain extends StatelessWidget {
             right: 0.0,
             child: Column(
               children: <Widget>[
-                //google sig-in
+                // Google sign-in
                 GestureDetector(
-                  onTap: () async {
-                    AuthService authService = AuthService();
-                    UserCredential? userCredential = await authService.googleSignIn();
-                    if (userCredential != null) {
-                      User? user = userCredential.user;
-                      print('Successfully LogIn');
-                    } else {
-                      print('Please Try again');
-                    }
+                  onTap: () async{
+                    authService.handleGoogleSignIn(context);
                   },
-                  child: const CustomAutheticationButton(colour: Colors.white,image: 'images/google.png', text: 'SIGN IN WITH GOOGLE',textcolour: Colors.black),
+                  child: const CustomAutheticationButton(
+                    colour: Colors.white,
+                    image: 'images/google.png',
+                    text: 'SIGN IN WITH GOOGLE',
+                    textcolour: Colors.black,
+                  ),
                 ),
                 const SizedBox(height: 15.0),
-
-                //email login
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterationPage(),
-                    ),
-                  ), // Replace with the actual screen you want to navigate to),
-                  child: const CustomAutheticationButton(colour: Colors.transparent,image: 'images/email.png', text: 'SIGN UP WITH EMAIL',textcolour: Colors.white),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterationPage(),
+                      ),
+                    );
+                  },
+                  child: const CustomAutheticationButton(
+                      colour: Colors.transparent,
+                      image: 'images/email.png',
+                      text: 'SIGN UP WITH EMAIL',
+                      textcolour: Colors.white),
                 ),
                 const SizedBox(height: 15.0),
-
-                //already have an account
+                // Already have an account
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -89,7 +90,6 @@ class RegisterMain extends StatelessWidget {
                       ),
                     );
                   },
-                  // Replace with the actual screen you want to navigate to),
                   child: Text(
                     'Already have an account?',
                     style: TextStyle(
@@ -103,10 +103,13 @@ class RegisterMain extends StatelessWidget {
             ),
           ),
 
+          const SizedBox(height: 15.0),
+
           //movie icon
           Center(
             child: Container(
-              margin: const EdgeInsets.only(top: 100.0, left: 25.0, right: 25.0),
+              margin:
+                  const EdgeInsets.only(top: 100.0, left: 25.0, right: 25.0),
               child: Column(
                 children: <Widget>[
                   const Image(
@@ -148,7 +151,8 @@ class RegisterMain extends StatelessWidget {
                 _handleSkipButton(context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent, // Set the background color to transparent
+                backgroundColor: Colors
+                    .transparent, // Set the background color to transparent
               ),
               child: Container(
                 //margin: EdgeInsets.only(right: 30.0, top: 30.0),
