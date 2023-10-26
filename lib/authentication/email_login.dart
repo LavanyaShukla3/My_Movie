@@ -5,6 +5,8 @@ import 'package:my_movie/authentication/login_auth_function.dart';
 import 'package:flutter/material.dart';
 import 'package:my_movie/authentication/form_registeration.dart';
 
+import '../movie_db/movie_homepage.dart';
+
 class EmailLogin extends StatefulWidget {
   const EmailLogin({super.key});
 
@@ -15,8 +17,9 @@ class EmailLogin extends StatefulWidget {
 class _EmailLoginState extends State<EmailLogin> {
   final _formkey = GlobalKey<FormState>();
   bool isLogin = false;
-  String? email;
-  String? password;
+  String email = '';
+  String password = '';
+  String username = '';
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -160,9 +163,13 @@ class _EmailLoginState extends State<EmailLogin> {
                       // Save the form when all the fields are validated
                       if (_formkey.currentState!.validate()) {
                         _formkey.currentState!.save();
-                        if (email != null && password != null) {
-                          signup(email!, password!);
-                        }
+                          signup(email, password);
+                          
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MovieHomepage(),),
+                        );
 
                       }
                     },
