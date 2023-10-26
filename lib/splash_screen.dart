@@ -25,7 +25,7 @@ class SplashScreenState extends State<SplashScreen>
     //to disable top bar and bottom bar
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     //to go to homepage
-    Future.delayed(const Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (_) =>
