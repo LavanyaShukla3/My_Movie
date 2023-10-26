@@ -3,7 +3,6 @@ import 'package:my_movie/authentication/email_login.dart';
 import 'package:my_movie/registration_page/background_animation.dart';
 import 'package:my_movie/movie_db/movie_homepage.dart';
 import 'package:my_movie/authentication/google_auth_service.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_movie/utilities/custom_authetication_button.dart';
 import 'package:my_movie/utilities/constants.dart';
@@ -86,7 +85,7 @@ class RegisterMain extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const RegisterationPage(),
+                        builder: (context) => const EmailLogin(),
                       ),
                     );
                   },
