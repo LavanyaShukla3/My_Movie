@@ -26,6 +26,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   google_fonts: ^6.1.0
   flutter_screenutil: ^5.9.0
+  cloud_firestore: ^4.11.0
 
 
 
@@ -33,8 +34,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-flutter:
 
+flutter:
   uses-material-design: true
   assets:
     - images/action.png
@@ -48,6 +49,19 @@ flutter:
     - images/TmdbLogo.png
     - images/popcorn.png
     - images/email.png
+flutter_icons:
+
+  image_path: "images/popcorn.png"
+  adaptive_icon_foreground: "assets/icon-android.png"
+  android: true
+  ios: true
+  adaptive_icon_background:
+    gradient:
+      colors:
+        Color.fromARGB(255, 56, 12, 12),
+        Color.fromARGB(255, 184, 42, 42)
+      begin: Alignment.bottomRight,
+      end: Alignment.topLeft,
 
 fonts:
   - family: Nunito
