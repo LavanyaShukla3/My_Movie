@@ -1,6 +1,6 @@
 # My_Movie
 
-I am creating a movie list app that allows users to browse movies by genre, popularity, and rating. Users can create their own personalized movie lists that can be set to private or public. Additionally, users can browse through various movies, cast, and crew.
+Flutter movie list app that allows users to browse movies by genre, popularity, and rating. Users can create their own personalized movie lists that can be set to private or public. Additionally, users can browse through various movies, cast, and crew.
 
 ![My Movie App Demo](https://github.com/LavanyaShukla3/images/blob/main/Edited_Recorder_03102023_042407%20(1).gif)
 
